@@ -1,0 +1,10 @@
+.DS_Store
+
+# Xcode user data
+**.pbxuser
+**.mode?v?
+**.perspectivev?
+**.xccheckout
+**.xcscmblueprint
+xcuserdata
+
