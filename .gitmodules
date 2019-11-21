@@ -1,0 +1,3 @@
+[submodule "External/SMARTMarkers"]
+	path = External/SMARTMarkers
+	url = https://github.com/smartmarkers/smartmarkers-ios
