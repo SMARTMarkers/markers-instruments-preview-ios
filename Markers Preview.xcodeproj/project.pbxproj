@@ -13,60 +13,14 @@
 		D4608EF622EA4FD600F0D579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4608EF422EA4FD600F0D579 /* Main.storyboard */; };
 		D4608EF822EA4FD800F0D579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4608EF722EA4FD800F0D579 /* Assets.xcassets */; };
 		D4608EFB22EA4FD800F0D579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4608EF922EA4FD800F0D579 /* LaunchScreen.storyboard */; };
+		D496FA7123888AE600A8FAB5 /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7023888AE600A8FAB5 /* SMART.framework */; };
+		D496FA7223888AE600A8FAB5 /* SMART.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7023888AE600A8FAB5 /* SMART.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D496FA7423888AE600A8FAB5 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7323888AE600A8FAB5 /* ResearchKit.framework */; };
+		D496FA7523888AE600A8FAB5 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7323888AE600A8FAB5 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D496FA7723888B2F00A8FAB5 /* SMARTMarkers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7623888B2F00A8FAB5 /* SMARTMarkers.framework */; };
+		D496FA7823888B2F00A8FAB5 /* SMARTMarkers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D496FA7623888B2F00A8FAB5 /* SMARTMarkers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4DC5B1F23327494001878B4 /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5B1E23327493001878B4 /* Demo.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D470162E23861B0300512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470162A23861B0300512B9A /* SMARTMarkers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D4E75D5D2035E73E000CE95A;
-			remoteInfo = SMARTMarkers;
-		};
-		D470163823861B0900512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470163023861B0800512B9A /* SwiftSMART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE43B1A919546D880017679A;
-			remoteInfo = "SwiftSMART-iOS";
-		};
-		D470163A23861B0900512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470163023861B0800512B9A /* SwiftSMART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE43B1B319546D880017679A;
-			remoteInfo = "SwiftSMART-iOSTests";
-		};
-		D470163C23861B0900512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470163023861B0800512B9A /* SwiftSMART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EECAA7831A5D3DE60062C64B;
-			remoteInfo = "SwiftSMART-macOS";
-		};
-		D470163E23861B0900512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470163023861B0800512B9A /* SwiftSMART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE13AA921A5D44D100B901FD;
-			remoteInfo = "SwiftSMART-macOSTests";
-		};
-		D470164623861B1800512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470164023861B1800512B9A /* ResearchKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B183A5951A8535D100C76870;
-			remoteInfo = ResearchKit;
-		};
-		D470164823861B1800512B9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D470164023861B1800512B9A /* ResearchKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
-			remoteInfo = ResearchKitTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D4608F0B22EA502400F0D579 /* Embed Frameworks */ = {
@@ -75,6 +29,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D496FA7523888AE600A8FAB5 /* ResearchKit.framework in Embed Frameworks */,
+				D496FA7823888B2F00A8FAB5 /* SMARTMarkers.framework in Embed Frameworks */,
+				D496FA7223888AE600A8FAB5 /* SMART.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,9 +49,9 @@
 		D4608EFA22EA4FD800F0D579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4608EFC22EA4FD800F0D579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D47016292386184500512B9A /* Markers Preview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Markers Preview.entitlements"; sourceTree = "<group>"; };
-		D470162A23861B0300512B9A /* SMARTMarkers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMARTMarkers.xcodeproj; path = External/SMARTMarkers/SMARTMarkers.xcodeproj; sourceTree = "<group>"; };
-		D470163023861B0800512B9A /* SwiftSMART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftSMART.xcodeproj; path = External/SMARTMarkers/SwiftSMART/SwiftSMART.xcodeproj; sourceTree = "<group>"; };
-		D470164023861B1800512B9A /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = External/SMARTMarkers/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		D496FA7023888AE600A8FAB5 /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D496FA7323888AE600A8FAB5 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D496FA7623888B2F00A8FAB5 /* SMARTMarkers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMARTMarkers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DC5B1E23327493001878B4 /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,7 +60,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D496FA7123888AE600A8FAB5 /* SMART.framework in Frameworks */,
 				D4268F2223382A48000416A1 /* HealthKit.framework in Frameworks */,
+				D496FA7723888B2F00A8FAB5 /* SMARTMarkers.framework in Frameworks */,
+				D496FA7423888AE600A8FAB5 /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,9 +81,9 @@
 		D4608EE222EA4FD600F0D579 = {
 			isa = PBXGroup;
 			children = (
-				D470164023861B1800512B9A /* ResearchKit.xcodeproj */,
-				D470163023861B0800512B9A /* SwiftSMART.xcodeproj */,
-				D470162A23861B0300512B9A /* SMARTMarkers.xcodeproj */,
+				D496FA7623888B2F00A8FAB5 /* SMARTMarkers.framework */,
+				D496FA7323888AE600A8FAB5 /* ResearchKit.framework */,
+				D496FA7023888AE600A8FAB5 /* SMART.framework */,
 				D47016292386184500512B9A /* Markers Preview.entitlements */,
 				D4608EED22EA4FD600F0D579 /* Markers-Preview */,
 				D4608EEC22EA4FD600F0D579 /* Products */,
@@ -152,34 +112,6 @@
 				D4608EFC22EA4FD800F0D579 /* Info.plist */,
 			);
 			path = "Markers-Preview";
-			sourceTree = "<group>";
-		};
-		D470162B23861B0300512B9A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D470162F23861B0300512B9A /* SMARTMarkers.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D470163123861B0800512B9A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D470163923861B0900512B9A /* SMART.framework */,
-				D470163B23861B0900512B9A /* SwiftSMART-iOSTests.xctest */,
-				D470163D23861B0900512B9A /* SMART.framework */,
-				D470163F23861B0900512B9A /* SwiftSMART-macOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D470164123861B1800512B9A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D470164723861B1800512B9A /* ResearchKit.framework */,
-				D470164923861B1800512B9A /* ResearchKitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,78 +166,12 @@
 			mainGroup = D4608EE222EA4FD600F0D579;
 			productRefGroup = D4608EEC22EA4FD600F0D579 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D470164123861B1800512B9A /* Products */;
-					ProjectRef = D470164023861B1800512B9A /* ResearchKit.xcodeproj */;
-				},
-				{
-					ProductGroup = D470162B23861B0300512B9A /* Products */;
-					ProjectRef = D470162A23861B0300512B9A /* SMARTMarkers.xcodeproj */;
-				},
-				{
-					ProductGroup = D470163123861B0800512B9A /* Products */;
-					ProjectRef = D470163023861B0800512B9A /* SwiftSMART.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D4608EEA22EA4FD600F0D579 /* Markers Preview */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D470162F23861B0300512B9A /* SMARTMarkers.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SMARTMarkers.framework;
-			remoteRef = D470162E23861B0300512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470163923861B0900512B9A /* SMART.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SMART.framework;
-			remoteRef = D470163823861B0900512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470163B23861B0900512B9A /* SwiftSMART-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SwiftSMART-iOSTests.xctest";
-			remoteRef = D470163A23861B0900512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470163D23861B0900512B9A /* SMART.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SMART.framework;
-			remoteRef = D470163C23861B0900512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470163F23861B0900512B9A /* SwiftSMART-macOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SwiftSMART-macOSTests.xctest";
-			remoteRef = D470163E23861B0900512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470164723861B1800512B9A /* ResearchKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ResearchKit.framework;
-			remoteRef = D470164623861B1800512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D470164923861B1800512B9A /* ResearchKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ResearchKitTests.xctest;
-			remoteRef = D470164823861B1800512B9A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D4608EE922EA4FD600F0D579 /* Resources */ = {

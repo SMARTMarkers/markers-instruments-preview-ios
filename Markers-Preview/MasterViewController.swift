@@ -13,8 +13,8 @@ import HealthKit
 
 class MasterViewController: UITableViewController {
 
-    var stepActivity: StepActivity?
-    var pdController: TaskController?
+
+    var taskController: TaskController?
     var sessionController: SessionController?
     var instruments = [Instrument]()
     var patient: Patient?
@@ -30,42 +30,28 @@ class MasterViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
 
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "All", style: .plain, target: self, action: #selector(beginAll(_:))),
-            UIBarButtonItem(title: "Selected", style: .plain, target: self, action: #selector(beginSelected(_:)))
         ]
         
         
         
         
-        if let bmi = localQuestionnaire("promis_q_dynamic") {
-            instruments.append(bmi)
+        if let q = localQuestionnaire("promis_q_dynamic") {
+            instruments.append(q)
         }
         
-        if let bmi = localQuestionnaire("bmi_r4") {
-            instruments.append(bmi)
+        if let q = localQuestionnaire("bmi_r4") {
+            instruments.append(q)
         }
-        if let bmi = localQuestionnaire("dynamicquestionnaire") {
-            instruments.append(bmi)
+        if let q = localQuestionnaire("dynamicquestionnaire") {
+            instruments.append(q)
         }
-        if let bmi = localQuestionnaire("dynamicquestionnaire_valuecoding") {
-            instruments.append(bmi)
+        if let q = localQuestionnaire("dynamicquestionnaire_valuecoding") {
+            instruments.append(q)
         }
-        
-        let settings = [
-            "client_id": "smpro-api",
-            "client_secret": "0620d1c5-a38e-4ac3-8ed2-d3a3be82add2",
-            "scope": "bloodpressure activity openid offline_access",
-            "redirect_uris": ["smpro://"],
-            "authorize_uri": "https://ohi-oauth.numerasocial.com/connect/authorize",
-            "token_uri": "https://ohi-oauth.numerasocial.com/connect/token",
-            "keychain" : true
-            ] as [String : Any]
-        
         
         
         instruments.append(contentsOf: SMARTMarkers.Instruments.ActiveTasks.allCases.map { $0.instance })
         instruments.append(contentsOf: SMARTMarkers.Instruments.HealthKit.allCases.map { $0.instance })
-
         tableView.reloadData()
     }
     
@@ -77,29 +63,8 @@ class MasterViewController: UITableViewController {
         }
         
         let instrument = instruments[selected.row]
-        self.pdController = TaskController(instrument: instrument)
-        startMeasure(measure: self.pdController!)
-        
-    }
-
-    @objc
-    func beginAll(_ sender: Any?) {
-        
-        let _store = HKHealthStore()
-        let start  = Date.yesterday.dayBefore.dayBefore.dayBefore
-        let end    = Date.tomorrow
-        
-        
-        print(start)
-        print(end)
-        
-        stepActivity = StepActivity(start, end)
-            
-        stepActivity?.fetch(_store, callback: { (samples, error) in
-            print(samples)
-        })
-        
-        
+        self.taskController = TaskController(instrument: instrument)
+        startMeasure(self.taskController!)
         
     }
 
@@ -128,38 +93,29 @@ class MasterViewController: UITableViewController {
         
         let instrument = instruments[indexPath.row]
         
-        pdController = TaskController(instrument: instrument)
-        
-        pdController?.reports(for: self.patient!, server: Server.Demo(), callback: { [unowned self] (success, error) in
-            
-            self.pdController?.reports?.reports.forEach({ (resource) in
-                print("\(resource.id?.string ?? ""): \(resource.sm_resourceType())")
-            })
-        })
-        
-        pdController?.createRequest(on: Server.Demo(), for: patient!, from: nil, callback: { (r, e) in
-            print(r?.rq_identifier)
-            print(e)
-        })
+        startMeasure(TaskController(instrument: instrument))
     }
     
-    func startMeasure(measure: TaskController) {
+    func startMeasure(_ controller: TaskController) {
         
-        pdController?.prepareSession(callback: { (task, error) in
+        taskController = controller
+
+        taskController?.prepareSession(callback: { (task, error) in
             if let controller = task {
                 self.present(controller, animated: true, completion: nil)
             }
         })
-        pdController?.onTaskCompletion = { [unowned self] submissionBundle, error in
+        
+        taskController?.onTaskCompletion = { [unowned self] submissionBundle, error in
             
             submissionBundle?.canSubmit = true
             
-            if let reports = self.pdController?.reports {
+            if let reports = self.taskController?.reports {
                 reports.submit(to: Server.Demo(), patient: self.patient!, callback: { (success, error) in
                     print("submission")
                     print("==================")
                     print(success)
-                    print(error)
+                    print(error as Any)
                     print(reports.reports)
                 })
             }
@@ -227,8 +183,8 @@ class MasterViewController: UITableViewController {
 
 extension MasterViewController: InstrumentResolver {
     
-    func resolveInstrument(in controller: TaskController) -> Instrument? {
-        return nil
+    func resolveInstrument(in controller: TaskController, callback: @escaping ((Instrument?, Error?) -> Void)) {
+        callback(nil,nil)
     }
     
 }
