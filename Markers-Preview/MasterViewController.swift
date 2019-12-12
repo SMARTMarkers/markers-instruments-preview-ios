@@ -17,23 +17,29 @@ class MasterViewController: UITableViewController {
     var taskController: TaskController?
     var sessionController: SessionController?
     var instruments = [Instrument]()
-    var patient: Patient?
+    var patient: Patient? {
+        didSet {
+            DispatchQueue.main.async {
+                self.btnPatientSelector?.title = self.patient?.humanName
+            }
+        }
+    }
+    let sessionBtn = UIBarButtonItem(title: "Start Session", style: .plain, target: self, action: #selector(startSession(_:)))
+    var btnPatientSelector: UIBarButtonItem?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Patient.read("b85d7e00-3690-4e2a-87a0-f3d2dfc908b3", server: Server.Demo()) { (p, e) in
-            self.patient = (p as! Patient)   
+        Patient.read("b85d7e00-3690-4e2a-87a0-f3d2dfc908b3", server: Server.Demo()) { [weak self] (p, e) in
+            self?.patient = (p as! Patient)
         }
         
         tableView.allowsMultipleSelectionDuringEditing = true
-        navigationItem.leftBarButtonItem = editButtonItem
-
-        navigationItem.rightBarButtonItems = [
-        ]
-        
-        
-        
+        tableView.isEditing = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Session", style: .plain, target: self, action: #selector(startSession(_:)))
+        btnPatientSelector = UIBarButtonItem(title: "Select Patient", style: .plain, target: self, action: #selector(selectPatient(_:)))
+        navigationItem.leftBarButtonItem = btnPatientSelector
         
         if let q = localQuestionnaire("promis_q_dynamic") {
             instruments.append(q)
@@ -56,17 +62,6 @@ class MasterViewController: UITableViewController {
     }
     
     
-    @objc func beginSelected(_ sender: Any?) {
-        
-        guard let selected = tableView.indexPathForSelectedRow else {
-            return
-        }
-        
-        let instrument = instruments[selected.row]
-        self.taskController = TaskController(instrument: instrument)
-        startMeasure(self.taskController!)
-        
-    }
 
 
     // MARK: - Table View
@@ -91,9 +86,6 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let instrument = instruments[indexPath.row]
-        
-        startMeasure(TaskController(instrument: instrument))
     }
     
     func startMeasure(_ controller: TaskController) {
@@ -123,10 +115,18 @@ class MasterViewController: UITableViewController {
     }
     
 
-    func startSession(for measures: [TaskController]) {
+    @objc func startSession(_ sender: Any?) {
         
-
-        sessionController = SessionController(measures, patient: patient, server: Server.Demo(), verifyUser: false)
+        guard let tasks = tableView.indexPathsForSelectedRows?.map ({ TaskController(instrument: instruments[$0.row]) }) else {
+            return
+        }
+        
+        createSession(tasks)
+    }
+    
+    func createSession(_ tasks: [TaskController]) {
+        
+        sessionController = SessionController(tasks, patient: patient, server: Server.Demo(), verifyUser: false)
         
         sessionController?.prepareController(callback: { (controller, error) in
             if let controller = controller {
@@ -137,7 +137,6 @@ class MasterViewController: UITableViewController {
         sessionController?.onConclusion = { session in
             print(session.identifier)
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -187,4 +186,21 @@ extension MasterViewController: InstrumentResolver {
         callback(nil,nil)
     }
     
+}
+
+
+// Patient Selection
+
+extension MasterViewController {
+    
+    @objc func selectPatient(_ sender: Any?) {
+        
+        let patientSelect = PatientListAll()
+        let patientSelectView = PatientListViewController(list: patientSelect, server: Server.Demo())
+        patientSelectView.onPatientSelect = { (patient) in
+            self.patient = patient
+        }
+        self.present(patientSelectView, animated: true, completion: nil)
+        
+    }
 }
